@@ -2,6 +2,9 @@
 
 name = input("enter your name: ")
 
+#say 'hello world'
 print('hello world')
+
+#print greeting with the users name
 print('hello', name)
 
