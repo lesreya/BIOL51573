@@ -12,6 +12,8 @@ def read_fasta(fasta_file):
     return genome
 
 def read_gff(gff_file, genome_sequence):
+    features = []
+
     file = open(gff_file, "r")
 
     for line in file:
@@ -19,9 +21,22 @@ def read_gff(gff_file, genome_sequence):
             continue
 
         parts = line.strip().split("\t")
+
         start = int(parts[3]) - 1
         end = int(parts[4])
 
+        info = parts[8]
+
+        seq_id = ""
+        for item in info.split(";"):
+            if item.startswith("ID="):
+                seq_id = item[3:]
+
         sequence = genome_sequence[start:end]
 
-        print("Extracted sequence preview:", sequence[:20])
+        features.append((seq_id, sequence))
+
+    file.close()
+
+    print("Total features:", len(features))
+    return features

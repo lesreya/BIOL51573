@@ -12,5 +12,7 @@ parser.add_argument("gff")
 
 args = parser.parse_args()
 
+features = read_gff(args.gff, genome)
+
 print("FASTA:", args.fasta)
 print("GFF:", args.gff)
