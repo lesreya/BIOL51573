@@ -21,6 +21,9 @@ def main():
     print("Writing output FASTA file...")
     write_output(features, "covid_genes.fasta")
 
+    # confirmation print statement
+    print(f"Output saved to: {output_file}")
+
     print("Done!")
 
 
