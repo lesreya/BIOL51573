@@ -2,7 +2,9 @@
 
 import argparse
 
-from gff_functions import read_gff
+from gff_functions import write_output
+
+write_output(features, "covid_genes.fasta")
 
 read_gff(args.gff, genome)
 

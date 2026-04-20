@@ -40,3 +40,14 @@ def read_gff(gff_file, genome_sequence):
 
     print("Total features:", len(features))
     return features
+
+def write_output(features, output_file):
+    file = open(output_file, "w")
+
+    for f in features:
+        file.write(">" + f[0] + "\n")
+        file.write(f[1] + "\n")
+
+    file.close()
+
+    print("Output file created")
