@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 
 import argparse
+from gff_functions import read_fasta, read_gff, write_output
 
-from gff_functions import write_output
 
-write_output(features, "covid_genes.fasta")
+def main():
+    # Set up command line inputs
+    parser = argparse.ArgumentParser(description="Parse GFF file and extract gene sequences")
+    parser.add_argument("fasta", help="Input FASTA file")
+    parser.add_argument("gff", help="Input GFF file")
 
-read_gff(args.gff, genome)
+    args = parser.parse_args()
 
-parser = argparse.ArgumentParser()
-parser.add_argument("fasta")
-parser.add_argument("gff")
+    print("Reading genome...")
+    genome = read_fasta(args.fasta)
 
-args = parser.parse_args()
+    print("Parsing GFF and extracting sequences...")
+    features = read_gff(args.gff, genome)
 
-features = read_gff(args.gff, genome)
+    print("Writing output FASTA file...")
+    write_output(features, "covid_genes.fasta")
 
-print("FASTA:", args.fasta)
-print("GFF:", args.gff)
+    print("Done!")
+
+
+if __name__ == "__main__":
+    main()
