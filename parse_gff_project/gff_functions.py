@@ -19,7 +19,9 @@ def read_gff(gff_file, genome_sequence):
             continue
 
         parts = line.strip().split("\t")
-        print("Start:", parts[3], "End:", parts[4])
-        break
+        start = int(parts[3]) - 1
+        end = int(parts[4])
 
-    file.close()
+        sequence = genome_sequence[start:end]
+
+        print("Extracted sequence preview:", sequence[:20])
