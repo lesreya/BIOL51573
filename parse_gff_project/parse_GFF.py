@@ -2,6 +2,10 @@
 
 import argparse
 
+from gff_functions import read_fasta
+
+genome = read_fasta(args.fasta)
+
 parser = argparse.ArgumentParser()
 parser.add_argument("fasta")
 parser.add_argument("gff")
